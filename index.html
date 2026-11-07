@@ -7,13 +7,6 @@
 <meta name="description" content="VeerCommerce helps sellers grow on Amazon, eBay, Walmart, Shopify, Etsy, TikTok Shop and Wayfair: store management, SEO listings, product research and growth strategies. Led by CEO Sajjad Hussain.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 10 L32 56 L44 30 L56 10 L44 10 L32 34 L20 10 Z' fill='%23ff7a18'/%3E%3C/svg%3E">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WHPV51FYYK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WHPV51FYYK');
-</script>
 </head>
 <body>
 
@@ -60,13 +53,17 @@
 
 <section class="hero" id="home">
   <div class="container hero-inner">
-    <div>
+    <div class="hero-copy">
       <span class="hero-badge" data-hero-badge>Your Trusted eCommerce Growth Partner</span>
-      <h1><span data-hero-a>Scale Your</span> <span class="accent" data-hero-b>eCommerce Business</span> <span data-hero-c>with VeerCommerce</span></h1>
-      <p data-hero-sub>Expert eBay, Amazon, Walmart &amp; multi-platform solutions for higher sales, better visibility and long-term success.</p>
+      <div data-slides></div>
       <div class="hero-cta">
         <a class="btn" data-wa href="#" target="_blank" rel="noopener">🚀 Get a Free Consultation</a>
         <a class="btn btn-outline" href="#services">▶ Explore Our Services</a>
+      </div>
+      <div class="slider-nav">
+        <button type="button" data-slide-prev aria-label="Previous slide">‹</button>
+        <div class="slider-dots" data-slide-dots></div>
+        <button type="button" data-slide-next aria-label="Next slide">›</button>
       </div>
       <div class="chips" id="platforms" data-chips></div>
     </div>
@@ -88,6 +85,13 @@
   </div>
 </section>
 
+<div class="logo-marquee">
+  <div class="container">
+    <p class="mq-title">We Manage &amp; Grow Stores On</p>
+    <div class="mq-track"><div class="mq-row" data-marquee></div></div>
+  </div>
+</div>
+
 <div class="trustbar">
   <div class="container" data-trustbar></div>
 </div>
@@ -99,6 +103,15 @@
       <h2>Complete eCommerce Solutions</h2>
       <p class="sub">Full-service management tailored to each marketplace — listings, optimization, research and growth, all in one place.</p>
       <div class="card-grid" data-services></div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="container">
+      <p class="kicker">Why Choose Us</p>
+      <h2>Why Sellers Choose VeerCommerce</h2>
+      <p class="sub">The things that matter when you hand your store to a team.</p>
+      <div class="card-grid" data-why></div>
     </div>
   </section>
 
@@ -182,6 +195,7 @@
 </footer>
 
 <a class="wa-float" data-wa href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<button class="to-top" data-top aria-label="Back to top">↑</button>
 
 <script src="script.js"></script>
 </body>
