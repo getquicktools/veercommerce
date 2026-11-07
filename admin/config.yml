@@ -31,10 +31,14 @@ collections:
             widget: object
             fields:
               - { label: "Badge", name: badge, widget: string }
-              - { label: "Title part 1", name: titleA, widget: string }
-              - { label: "Title part 2 (orange)", name: titleB, widget: string }
-              - { label: "Title part 3", name: titleC, widget: string }
-              - { label: "Subtitle", name: subtitle, widget: text }
+              - label: "Slides (rotating)"
+                name: slides
+                widget: list
+                fields:
+                  - { label: "Title part 1", name: titleA, widget: string }
+                  - { label: "Title part 2 (orange)", name: titleB, widget: string }
+                  - { label: "Title part 3", name: titleC, widget: string }
+                  - { label: "Subtitle", name: subtitle, widget: text }
           - label: "Platforms (chips)"
             name: platforms
             widget: list
@@ -45,6 +49,13 @@ collections:
             fields:
               - { label: "Icon (emoji)", name: icon, widget: string }
               - { label: "Text", name: text, widget: string }
+          - label: "Why Choose Us"
+            name: whyChoose
+            widget: list
+            fields:
+              - { label: "Icon (emoji)", name: icon, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Text", name: text, widget: text }
           - label: "Services"
             name: services
             widget: list
