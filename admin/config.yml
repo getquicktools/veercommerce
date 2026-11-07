@@ -23,6 +23,7 @@ collections:
               - { label: "Phone (display)", name: phoneDisplay, widget: string }
               - { label: "WhatsApp number (country code + number, no +)", name: whatsapp, widget: string }
               - { label: "CEO Name", name: ceoName, widget: string }
+              - { label: "CEO Photo", name: ceoPhoto, widget: image, required: false }
               - { label: "CEO Title", name: ceoTitle, widget: string }
               - { label: "Top bar note", name: topbarNote, widget: string }
           - label: "Hero (top section)"
