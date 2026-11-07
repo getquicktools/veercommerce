@@ -99,6 +99,14 @@ collections:
                 name: points
                 widget: list
                 field: { label: "Point", name: item, widget: string }
+          - label: "Blog Posts"
+            name: blog
+            widget: list
+            fields:
+              - { label: "Tag", name: tag, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Short excerpt (card)", name: excerpt, widget: text }
+              - { label: "Full article (blank line = new paragraph)", name: body, widget: text }
           - label: "FAQs"
             name: faqs
             widget: list
