@@ -49,6 +49,8 @@
   };
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  var LOGOS = { "Amazon": "images/logos/amazon.svg", "eBay": "images/logos/ebay.svg", "Walmart": "images/logos/walmart.svg", "Shopify": "images/logos/shopify.svg", "Etsy": "images/logos/etsy.svg", "TikTok Shop": "images/logos/tiktok.svg", "TikTok": "images/logos/tiktok.svg", "Wayfair": "images/logos/wayfair.svg" };
+  function logoFor(name) { if (LOGOS[name]) return LOGOS[name]; for (var k in LOGOS) { if (String(name).indexOf(k) === 0) return LOGOS[k]; } return null; }
   function setText(sel, txt) { document.querySelectorAll(sel).forEach(function (el) { el.textContent = txt; }); }
   function setHTML(sel, html) { document.querySelectorAll(sel).forEach(function (el) { el.innerHTML = html; }); }
 
@@ -76,7 +78,7 @@
     setText("[data-hero-c]", h.titleC || "");
     setText("[data-hero-sub]", h.subtitle || "");
 
-    var chips = (d.platforms || []).map(function (p) { return '<span class="chip">' + esc(p) + "</span>"; }).join("");
+    var chips = (d.platforms || []).map(function (p) { var lg = logoFor(p); return '<span class="chip">' + (lg ? '<img src="' + lg + '" alt="' + esc(p) + ' logo">' : "") + esc(p) + "</span>"; }).join("");
     setHTML("[data-chips]", chips);
     setHTML("[data-chips-mini]", chips);
 
@@ -85,7 +87,9 @@
     }).join(""));
 
     setHTML("[data-services]", (d.services || []).map(function (sv) {
-      return '<article class="svc"><div class="svc-icon" style="--c:' + esc(sv.color || "#0a1f44") + ";background:" + esc(sv.color || "#0a1f44") + '">' + esc(sv.icon || "•") + "</div><h3>" + esc(sv.title) + "</h3><p>" + esc(sv.text) + '</p><a href="#" data-wa-card>Learn More →</a></article>';
+      var lg = logoFor(sv.title);
+      var head = lg ? '<div class="svc-logo"><img src="' + lg + '" alt="' + esc(sv.title) + ' logo"></div>' : '<div class="svc-icon" style="--c:' + esc(sv.color || "#0a1f44") + ";background:" + esc(sv.color || "#0a1f44") + '">' + esc(sv.icon || "•") + "</div>";
+      return '<article class="svc">' + head + "<h3>" + esc(sv.title) + "</h3><p>" + esc(sv.text) + '</p><a href="#" data-wa-card>Learn More →</a></article>';
     }).join(""));
     document.querySelectorAll("[data-wa-card]").forEach(function (a) { a.href = wa; a.target = "_blank"; a.rel = "noopener"; });
 
