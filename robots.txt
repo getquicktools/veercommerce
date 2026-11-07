@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://veer-commerce.netlify.app/sitemap.xml
+Sitemap: https://veercommerce.com/sitemap.xml
