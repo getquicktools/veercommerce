@@ -3,7 +3,7 @@
 (function () {
   "use strict";
   var FALLBACK = {
-    site: { name: "VeerCommerce", tagline: "Grow • Manage • Succeed", email: "Veercommerce744@gmail.com", phoneDisplay: "+92 301 9256824", whatsapp: "923019256824", ceoName: "Sajjad Hussain", ceoTitle: "CEO & Founder", topbarNote: "Grow Your Business Globally" },
+    site: { name: "VeerCommerce", tagline: "Grow • Manage • Succeed", email: "Veercommerce744@gmail.com", phoneDisplay: "+92 301 9256824", whatsapp: "923019256824", ceoName: "Sajjad Hussain", ceoPhoto: "images/ceo.jpg", ceoTitle: "CEO & Founder", topbarNote: "Grow Your Business Globally" },
     hero: { badge: "Your Trusted eCommerce Growth Partner", titleA: "Scale Your", titleB: "eCommerce Business", titleC: "with VeerCommerce", subtitle: "Expert eBay, Amazon, Walmart & multi-platform solutions for higher sales, better visibility and long-term success." },
     platforms: ["Amazon", "eBay", "Walmart", "Shopify", "Etsy", "TikTok Shop", "Wayfair"],
     trustBar: [
@@ -63,7 +63,11 @@
     setText("[data-ceo-name]", s.ceoName || "");
     setText("[data-ceo-title]", s.ceoTitle || "");
     var initials = (s.ceoName || "VC").split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("");
-    setText("[data-ceo-initials]", initials);
+    if (s.ceoPhoto) {
+      setHTML("[data-ceo-initials]", '<img src="' + esc(s.ceoPhoto) + '" alt="' + esc(s.ceoName || "CEO") + '">');
+    } else {
+      setText("[data-ceo-initials]", initials);
+    }
 
     var h = d.hero || {};
     setText("[data-hero-badge]", h.badge || "");
