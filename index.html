@@ -6,6 +6,14 @@
 <title>VeerCommerce — eCommerce Growth Agency for Amazon, eBay, Walmart & More</title>
 <meta name="description" content="VeerCommerce helps sellers grow on Amazon, eBay, Walmart, Shopify, Etsy, TikTok Shop and Wayfair: store management, SEO listings, product research and growth strategies. Led by CEO Sajjad Hussain.">
 <link rel="stylesheet" href="style.css">
+<meta property="og:title" content="VeerCommerce — eCommerce Growth Agency">
+<meta property="og:description" content="We manage and grow stores on Amazon, eBay, Walmart, Shopify, Etsy, TikTok Shop and Wayfair. CEO: Sajjad Hussain.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://veer-commerce.netlify.app/">
+<meta property="og:image" content="https://veer-commerce.netlify.app/images/hero-laptop.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"VeerCommerce","slogan":"Grow • Manage • Succeed","email":"Veercommerce744@gmail.com","telephone":"+92-301-9256824","url":"https://veer-commerce.netlify.app/","founder":{"@type":"Person","name":"Sajjad Hussain","jobTitle":"CEO & Founder"},"makesOffer":[{"@type":"Offer","name":"Trial Pack","price":"10","priceCurrency":"USD"},{"@type":"Offer","name":"Best Seller","price":"35","priceCurrency":"USD"},{"@type":"Offer","name":"Store Growth","price":"75","priceCurrency":"USD"}]}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 10 L32 56 L44 30 L56 10 L44 10 L32 34 L20 10 Z' fill='%23ff7a18'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -44,9 +52,10 @@
       <a href="#process">Our Work</a>
       <a href="#results">Case Studies</a>
       <a href="#about">About Us</a>
-      <a href="#faq">Blog</a>
+      <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="menu-btn" data-menu-btn aria-label="Menu">⋮</button>
     <a class="btn btn-sm" data-wa href="#" target="_blank" rel="noopener">📅 Free Consultation</a>
   </div>
 </header>
@@ -68,15 +77,13 @@
       <div class="chips" id="platforms" data-chips></div>
     </div>
     <div class="hero-visual">
-      <div class="dashboard">
-        <h4>Grow Faster, Sell Bigger 📈</h4>
-        <div class="chart" aria-hidden="true"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:55%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:88%"></i><i style="height:100%"></i></div>
-        <span class="chart-note">Sales growth across your marketplaces</span>
-        <div class="chips" data-chips-mini></div>
+      <div class="hero-img-wrap">
+        <img class="hero-img" src="images/hero-laptop.jpg" alt="Sales growth chart on a laptop — Grow Faster, Sell Bigger">
+        <div data-hero-logos></div>
       </div>
-      <div class="ceo-card">
-        <div class="ceo-avatar" data-ceo-initials>SH</div>
-        <div>
+      <div class="ceo-panel">
+        <div class="ceo-photo" data-ceo-initials>SH</div>
+        <div class="ceo-badge">
           <strong data-ceo-name>Sajjad Hussain</strong>
           <span><span data-ceo-title>CEO &amp; Founder</span>, VeerCommerce</span>
         </div>
@@ -157,6 +164,41 @@
     </div>
   </section>
 
+  <section class="section" id="quote">
+    <div class="container">
+      <p class="kicker">Free Consultation</p>
+      <h2>Get a Free Quote</h2>
+      <p class="sub">Tell us about your store — the form opens WhatsApp with your details ready to send.</p>
+      <form class="quote-form" data-quote-form>
+        <div class="qf-grid">
+          <label>Your Name<input type="text" name="qname" placeholder="e.g. Ali Khan" required></label>
+          <label>WhatsApp or Email<input type="text" name="qcontact" placeholder="03xx xxxxxxx / you@mail.com" required></label>
+          <label>Platform
+            <select name="qplatform">
+              <option>Amazon</option><option>eBay</option><option>Walmart</option><option>Shopify</option><option>Etsy</option><option>TikTok Shop</option><option>Wayfair</option><option>Other</option>
+            </select>
+          </label>
+          <label>Package
+            <select name="qpackage">
+              <option>Not sure yet</option><option>Trial Pack — $10</option><option>Best Seller — $35</option><option>Store Growth — $75</option>
+            </select>
+          </label>
+        </div>
+        <label>About your store<textarea name="qmsg" rows="4" placeholder="Your niche, number of products, your goal..."></textarea></label>
+        <button class="btn btn-wa" type="submit">💬 Send via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <div class="container">
+      <p class="kicker">From Our Blog</p>
+      <h2>Seller Tips &amp; Guides</h2>
+      <p class="sub">Short, practical reads from the VeerCommerce team.</p>
+      <div class="card-grid" data-blog></div>
+    </div>
+  </section>
+
   <section class="section" id="faq">
     <div class="container">
       <p class="kicker">Good to Know</p>
@@ -196,6 +238,15 @@
 
 <a class="wa-float" data-wa href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 <button class="to-top" data-top aria-label="Back to top">↑</button>
+
+<div class="reader" data-reader hidden>
+  <div class="reader-card">
+    <button class="reader-close" data-reader-close aria-label="Close">✕</button>
+    <p class="kicker" data-reader-tag style="text-align:left"></p>
+    <h2 data-reader-title style="text-align:left"></h2>
+    <div class="reader-body" data-reader-body></div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

@@ -50,6 +50,11 @@
       { name: "Store Growth", price: "$75", delivery: "5-day delivery", popular: false, features: ["60 SEO-optimized eBay listings", "Deep research report (25 products)", "Full listing optimization", "Store cleanup + priority support"] }
     ],
     about: { title: "Your Growth Partner in eCommerce", text: "We are a dedicated eCommerce agency helping businesses grow on eBay, Amazon, Walmart and more with expert strategies, data-driven solutions and professional support.", points: ["Proven Track Record", "24/7 Support", "100% Client Satisfaction", "Results-Driven Strategies"] },
+    blog: [
+      { tag: "eBay Tips", title: "5 eBay Title Mistakes That Kill Your Sales", excerpt: "Titles decide whether buyers ever see your product. Here are the five mistakes we fix first in almost every store audit.", body: "Your title is the first thing a buyer sees — and the first thing eBay's search reads. The mistakes we see most often:\n\n1. Wasting words on 'hot', 'sale' or 'best quality' instead of what the product actually is.\n2. No size, material or compatibility — the exact words buyers type.\n3. Keywords stuffed in a random order, so the title reads badly and gets skipped.\n4. Copying a competitor's title, which buries you under their listing.\n5. Forgetting the sold-listing check: titles of items that actually sold tell you which words work.\n\nFix these five and the same product usually gets more clicks without spending a penny on ads. Our Trial Pack rewrites 5 listings with keyword titles built from sold-listing research." },
+      { tag: "Research", title: "How Winning-Product Research Actually Works", excerpt: "Winning products are found in sold data, not in guesswork. A look inside the research process behind our packages.", body: "Guesswork is expensive. Real product research follows a simple chain:\n\nFirst, we look at sold listings — not active ones. An item listed 500 times but sold 3 times is a trap, not a trend.\n\nSecond, we check the sell-through rate and the average sold price, so the margin survives fees, shipping and returns.\n\nThird, we study the top sellers of that product: their titles, photos and shipping offers show the standard you have to beat.\n\nOnly then does a product earn a place on the shortlist. This is exactly the research inside our Best Seller and Store Growth packages — you get the report, not just listings." },
+      { tag: "Guides", title: "Amazon, eBay or Walmart: Where Should You Start?", excerpt: "Traffic, fees, rules and competition are different on each platform. A plain-English way to pick your first one.", body: "There is no single best marketplace — there is a best first marketplace for your situation.\n\neBay is the fastest place to start: low entry cost, every category welcome, and quick feedback on what sells.\n\nAmazon brings the biggest traffic, but it demands more — brand rules, FBA logistics and stricter account health.\n\nWalmart sits in between: less competition than Amazon, serious buyers, and WFS fulfilment once you are approved.\n\nOur honest advice: start where your product already fits, prove the sales, then expand. VeerCommerce manages all three — plus Shopify, Etsy, TikTok Shop and Wayfair — so your growth plan can stay with one team." }
+    ],
     faqs: [
       { q: "Which platforms do you manage?", a: "Amazon, eBay, Walmart, Shopify, Etsy, TikTok Shop and Wayfair — from listing creation and optimization to full store management." },
       { q: "How do we start?", a: "Message us on WhatsApp or email with your store link and goals. We reply with a short plan and the right package — no obligation." },
@@ -66,6 +71,7 @@
 
   function render(d) {
     var s = d.site || {};
+    window.__veerWhatsApp = s.whatsapp || "";
     var wa = "https://wa.me/" + (s.whatsapp || "") + "?text=" + encodeURIComponent("Hello VeerCommerce, I want a free consultation about my store.");
     document.querySelectorAll("[data-wa]").forEach(function (a) { a.href = wa; });
     document.querySelectorAll("[data-mail]").forEach(function (a) { a.href = "mailto:" + (s.email || ""); a.textContent = "✉️ " + (s.email || ""); });
@@ -96,6 +102,23 @@
 
     var mqItems = (d.platforms || []).map(function (p) { var lg = logoFor(p); return lg ? '<span class="mq-item"><img src="' + lg + '" alt="' + esc(p) + ' logo"></span>' : ""; }).join("");
     setHTML("[data-marquee]", mqItems + mqItems);
+
+    var posClasses = ["fp1", "fp2", "fp3", "fp4", "fp5", "fp6", "fp7"];
+    setHTML("[data-hero-logos]", (d.platforms || []).map(function (p, i) { var lg = logoFor(p); return lg ? '<span class="float-chip ' + posClasses[i % posClasses.length] + '" style="animation-delay:' + (i * 0.45) + 's"><img src="' + lg + '" alt="' + esc(p) + ' logo">' + esc(p) + "</span>" : ""; }).join(""));
+
+    setHTML("[data-blog]", (d.blog || []).map(function (b, i) {
+      return '<article class="svc blog-card"><span class="blog-tag">' + esc(b.tag) + "</span><h3>" + esc(b.title) + "</h3><p>" + esc(b.excerpt) + '</p><a href="#" data-read="' + i + '">Read More →</a></article>';
+    }).join(""));
+    document.querySelectorAll("[data-read]").forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        var b = (d.blog || [])[parseInt(a.getAttribute("data-read"), 10)]; if (!b) return;
+        setText("[data-reader-tag]", b.tag || "Blog");
+        setText("[data-reader-title]", b.title || "");
+        setHTML("[data-reader-body]", String(b.body || "").split(/\n\n+/).map(function (p) { return "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>"; }).join(""));
+        var r = document.querySelector("[data-reader]"); if (r) { r.hidden = false; document.body.style.overflow = "hidden"; }
+      });
+    });
 
     setHTML("[data-why]", (d.whyChoose || []).map(function (w) {
       return '<article class="svc"><div class="svc-icon" style="background:var(--navy)">' + esc(w.icon || "•") + "</div><h3>" + esc(w.title) + "</h3><p>" + esc(w.text) + "</p></article>";
@@ -182,7 +205,66 @@
       top.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
       window.addEventListener("scroll", function () { top.classList.toggle("show", window.scrollY > 500); }, { passive: true });
     }
+    var menuBtn = document.querySelector("[data-menu-btn]");
+    var nav = document.querySelector(".main-nav");
+    if (menuBtn && nav) {
+      menuBtn.addEventListener("click", function () { nav.classList.toggle("open"); });
+      nav.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { nav.classList.remove("open"); }); });
+    }
+    var closeBtn = document.querySelector("[data-reader-close]");
+    var reader = document.querySelector("[data-reader]");
+    function closeReader() { if (reader) { reader.hidden = true; document.body.style.overflow = ""; } }
+    if (closeBtn) closeBtn.addEventListener("click", closeReader);
+    if (reader) reader.addEventListener("click", function (e) { if (e.target === reader) closeReader(); });
+    var form = document.querySelector("[data-quote-form]");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var lines = ["Hello VeerCommerce, I want a free quote.", "Name: " + (fd.get("qname") || ""), "Contact: " + (fd.get("qcontact") || ""), "Platform: " + (fd.get("qplatform") || ""), "Package: " + (fd.get("qpackage") || ""), "About my store: " + (fd.get("qmsg") || "")];
+        var num = (window.__veerWhatsApp || "923019256824");
+        window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+      });
+    }
+    initTilt();
+    initHeroParallax();
   });
+
+  function initTilt() {
+    if (!window.matchMedia || !window.matchMedia("(pointer:fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll(".svc, .price-card").forEach(function (card) {
+      card.classList.add("tilt");
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = "perspective(900px) rotateY(" + (x * 7).toFixed(2) + "deg) rotateX(" + (-y * 7).toFixed(2) + "deg) translateY(-3px)";
+      });
+      card.addEventListener("pointerleave", function () { card.style.transform = ""; });
+    });
+  }
+
+  function initHeroParallax() {
+    if (!window.matchMedia || !window.matchMedia("(pointer:fine)").matches) return;
+    var visual = document.querySelector(".hero-visual");
+    var img = document.querySelector(".hero-img");
+    if (!visual || !img) return;
+    visual.addEventListener("pointermove", function (e) {
+      var r = visual.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      img.style.transform = "rotateY(" + (x * 6).toFixed(2) + "deg) rotateX(" + (-y * 6).toFixed(2) + "deg)";
+      document.querySelectorAll(".float-chip").forEach(function (chip, i) {
+        var depth = 6 + i * 3;
+        chip.style.translate = (x * depth).toFixed(1) + "px " + (y * depth).toFixed(1) + "px";
+      });
+    });
+    visual.addEventListener("pointerleave", function () {
+      img.style.transform = "";
+      document.querySelectorAll(".float-chip").forEach(function (chip) { chip.style.translate = ""; });
+    });
+  }
 
   render(FALLBACK);
   fetch("content.json", { cache: "no-store" })
